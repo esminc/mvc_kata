@@ -49,18 +49,18 @@ class Buttle
     @player = Player.new
     @turn_count = 0
   end
-  
+
   def finish_battle
     puts "#{@enemey.name}をたおした"
-    
+
     puts
     puts "==========================="
     puts "かかったターン数#{@turn_count}"
     puts "経験値#{@enemey.exp}かくとく"
-    
+
     gets
   end
-  
+
   def check_enemey_hp
     if @enemey.hp <= 0
       @enemey.hp = 0
@@ -69,17 +69,17 @@ class Buttle
       enemey_attack()
     end
   end
-  
+
   def game_over
     puts "#{@player.name}はたおれました"
-    
+
     puts
     puts "==========================="
     puts "ゲームオーバー"
-    
+
     gets
   end
-  
+
   def check_player_hp
     if @player.hp <= 0
       @player.hp = 0
@@ -88,46 +88,46 @@ class Buttle
       query_command()
     end
   end
-  
+
   def enemey_attack
     damage_point = rand(@enemey.attack_power) + 1
-    
+
     puts
     puts "==========================="
     puts "#{@enemey.name}のこうげき"
     @player.hp -= damage_point
     puts "#{@player.name}に#{damage_point}のダメージ"
-    
+
     gets
-    
+
     check_player_hp()
   end
-  
+
   def player_attack
     damage_point = rand(@player.attack_power) + 1
-    
+
     puts
     puts "==========================="
     puts "#{@player.name}のこうげき"
     @enemey.hp -= damage_point
     puts "#{@enemey.name}に#{damage_point}のダメージ"
-    
+
     gets
-    
+
     check_enemey_hp()
   end
-  
+
   def player_hoimi
     cure_point = rand(8) + 1
-    
+
     puts
     puts "==========================="
     puts "#{@player.name}はホイミをとなえた"
     @player.hp = [@player.hp + cure_point, @player.max_hp].min
     puts "HPが#{cure_point}回復した"
-    
+
     gets
-    
+
     enemey_attack()
   end
 
@@ -140,9 +140,9 @@ class Buttle
     puts " 1 たたかう"
     puts " 2 ホイミ"
     puts "コマンド? [1]"
-    
+
     command = gets.chomp
-    
+
     case command
     when "ホイミ", "2"
       player_hoimi()
@@ -152,20 +152,20 @@ class Buttle
       player_attack()
     end
   end
-  
-  def encount
+
+  def encounter
     @enemey = @enemey_classes.sample.new
-    
+
     puts "==========================="
     puts "#{@enemey.name}があらわれた"
-    
+
     gets
-    
+
     query_command()
   end
 
   def start
-    encount()
+    encounter()
   end
 end
 
@@ -175,18 +175,18 @@ class ButtleEnglish
     @player = Player.new
     @turn_count = 0
   end
-  
+
   def finish_battle
     puts "#{@player.name} win!"
-    
+
     puts
     puts "==========================="
     puts "Turn count: #{@turn_count}"
     puts "#{@player.name} get #{@enemey.exp} EXP"
-    
+
     gets
   end
-  
+
   def check_enemey_hp
     if @enemey.hp <= 0
       @enemey.hp = 0
@@ -195,17 +195,17 @@ class ButtleEnglish
       enemey_attack()
     end
   end
-  
+
   def game_over
     puts "#{@player.name} lose..."
-    
+
     puts
     puts "==========================="
     puts "GAME OVER"
-    
+
     gets
   end
-  
+
   def check_player_hp
     if @player.hp <= 0
       @player.hp = 0
@@ -214,46 +214,46 @@ class ButtleEnglish
       query_command()
     end
   end
-  
+
   def enemey_attack
     damage_point = rand(@enemey.attack_power) + 1
-    
+
     puts
     puts "==========================="
     puts "#{@enemey.name} attack."
     @player.hp -= damage_point
     puts "#{@player.name} damaged #{damage_point} point(s)."
-    
+
     gets
-    
+
     check_player_hp()
   end
-  
+
   def player_attack
     damage_point = rand(@player.attack_power) + 1
-    
+
     puts
     puts "==========================="
     puts "#{@player.name} attack"
     @enemey.hp -= damage_point
     puts "#{@enemey.name} damaged #{damage_point} point(s)."
-    
+
     gets
-    
+
     check_enemey_hp()
   end
-  
+
   def player_hoimi
     cure_point = rand(8) + 1
-    
+
     puts
     puts "==========================="
     puts "#{@player.name} call hoimi."
     @player.hp = [@player.hp + cure_point, @player.max_hp].min
     puts "#{@player.name} cured #{cure_point} point(s)"
-    
+
     gets
-    
+
     enemey_attack()
   end
 
@@ -266,9 +266,9 @@ class ButtleEnglish
     puts " 1 Attack"
     puts " 2 Hoimi"
     puts "Command? [1]"
-    
+
     command = gets.chomp
-    
+
     case command
     when "Hoimi", "2"
       player_hoimi()
@@ -276,20 +276,20 @@ class ButtleEnglish
       player_attack()
     end
   end
-  
-  def encount
+
+  def encounter
     @enemey = @enemey_classes.sample.new
-    
+
     puts "==========================="
-    puts "#{@player.name} encounted a #{@enemey.name}."
-    
+    puts "#{@player.name} encountered a #{@enemey.name}."
+
     gets
-    
+
     query_command()
   end
 
   def start
-    encount()
+    encounter()
   end
 end
 
