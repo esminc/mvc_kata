@@ -43,7 +43,7 @@ class Player < Living
   end
 end
 
-class Buttle
+class Battle
   def initialize
     @enemey_classes = [Slime, Dragon]
     @player = Player.new
@@ -169,7 +169,7 @@ class Buttle
   end
 end
 
-class ButtleEnglish
+class BattleEnglish
   def initialize
     @enemey_classes = [Slime, Dragon]
     @player = Player.new
@@ -295,7 +295,7 @@ end
 
 
 if ARGV.shift == "english"
-  ButtleEnglish.new.start
+  BattleEnglish.new.start
 else
-  Buttle.new.start
+  Battle.new.start
 end
