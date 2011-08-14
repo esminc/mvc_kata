@@ -32,13 +32,10 @@ class Dragon < Enemy
 end
 
 class Player < Living
-  attr :mp, true
-
   def initialize
     self.name = "PLAYER"
     self.max_hp = 10
     self.hp = self.max_hp
-    self.mp = 20
     self.attack_power = 3
   end
 end
