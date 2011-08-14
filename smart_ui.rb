@@ -7,11 +7,11 @@ class Living
   attr :attack_power, true
 end
 
-class Enemey < Living
+class Enemy < Living
   attr :exp, true
 end
 
-class Slime < Enemey
+class Slime < Enemy
   def initialize
     self.name = "SLIME"
     self.max_hp = 10
@@ -21,7 +21,7 @@ class Slime < Enemey
   end
 end
 
-class Dragon < Enemey
+class Dragon < Enemy
   def initialize
     self.name = "DRAGON"
     self.max_hp = 20
@@ -45,28 +45,28 @@ end
 
 class Battle
   def initialize
-    @enemey_classes = [Slime, Dragon]
+    @enemy_classes = [Slime, Dragon]
     @player = Player.new
     @turn_count = 0
   end
 
   def finish_battle
-    puts "#{@enemey.name}をたおした"
+    puts "#{@enemy.name}をたおした"
 
     puts
     puts "==========================="
     puts "かかったターン数#{@turn_count}"
-    puts "経験値#{@enemey.exp}かくとく"
+    puts "経験値#{@enemy.exp}かくとく"
 
     gets
   end
 
-  def check_enemey_hp
-    if @enemey.hp <= 0
-      @enemey.hp = 0
+  def check_enemy_hp
+    if @enemy.hp <= 0
+      @enemy.hp = 0
       finish_battle()
     else
-      enemey_attack()
+      enemy_attack()
     end
   end
 
@@ -89,12 +89,12 @@ class Battle
     end
   end
 
-  def enemey_attack
-    damage_point = rand(@enemey.attack_power) + 1
+  def enemy_attack
+    damage_point = rand(@enemy.attack_power) + 1
 
     puts
     puts "==========================="
-    puts "#{@enemey.name}のこうげき"
+    puts "#{@enemy.name}のこうげき"
     @player.hp -= damage_point
     puts "#{@player.name}に#{damage_point}のダメージ"
 
@@ -109,12 +109,12 @@ class Battle
     puts
     puts "==========================="
     puts "#{@player.name}のこうげき"
-    @enemey.hp -= damage_point
-    puts "#{@enemey.name}に#{damage_point}のダメージ"
+    @enemy.hp -= damage_point
+    puts "#{@enemy.name}に#{damage_point}のダメージ"
 
     gets
 
-    check_enemey_hp()
+    check_enemy_hp()
   end
 
   def player_hoimi
@@ -128,7 +128,7 @@ class Battle
 
     gets
 
-    enemey_attack()
+    enemy_attack()
   end
 
   def query_command
@@ -154,10 +154,10 @@ class Battle
   end
 
   def encounter
-    @enemey = @enemey_classes.sample.new
+    @enemy = @enemy_classes.sample.new
 
     puts "==========================="
-    puts "#{@enemey.name}があらわれた"
+    puts "#{@enemy.name}があらわれた"
 
     gets
 
@@ -171,7 +171,7 @@ end
 
 class BattleEnglish
   def initialize
-    @enemey_classes = [Slime, Dragon]
+    @enemy_classes = [Slime, Dragon]
     @player = Player.new
     @turn_count = 0
   end
@@ -182,17 +182,17 @@ class BattleEnglish
     puts
     puts "==========================="
     puts "Turn count: #{@turn_count}"
-    puts "#{@player.name} get #{@enemey.exp} EXP"
+    puts "#{@player.name} get #{@enemy.exp} EXP"
 
     gets
   end
 
-  def check_enemey_hp
-    if @enemey.hp <= 0
-      @enemey.hp = 0
+  def check_enemy_hp
+    if @enemy.hp <= 0
+      @enemy.hp = 0
       finish_battle()
     else
-      enemey_attack()
+      enemy_attack()
     end
   end
 
@@ -215,12 +215,12 @@ class BattleEnglish
     end
   end
 
-  def enemey_attack
-    damage_point = rand(@enemey.attack_power) + 1
+  def enemy_attack
+    damage_point = rand(@enemy.attack_power) + 1
 
     puts
     puts "==========================="
-    puts "#{@enemey.name} attack."
+    puts "#{@enemy.name} attack."
     @player.hp -= damage_point
     puts "#{@player.name} damaged #{damage_point} point(s)."
 
@@ -235,12 +235,12 @@ class BattleEnglish
     puts
     puts "==========================="
     puts "#{@player.name} attack"
-    @enemey.hp -= damage_point
-    puts "#{@enemey.name} damaged #{damage_point} point(s)."
+    @enemy.hp -= damage_point
+    puts "#{@enemy.name} damaged #{damage_point} point(s)."
 
     gets
 
-    check_enemey_hp()
+    check_enemy_hp()
   end
 
   def player_hoimi
@@ -254,7 +254,7 @@ class BattleEnglish
 
     gets
 
-    enemey_attack()
+    enemy_attack()
   end
 
   def query_command
@@ -278,10 +278,10 @@ class BattleEnglish
   end
 
   def encounter
-    @enemey = @enemey_classes.sample.new
+    @enemy = @enemy_classes.sample.new
 
     puts "==========================="
-    puts "#{@player.name} encountered a #{@enemey.name}."
+    puts "#{@player.name} encountered a #{@enemy.name}."
 
     gets
 
