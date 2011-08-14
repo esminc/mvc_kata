@@ -143,8 +143,6 @@ class Battle
     case command
     when "ホイミ", "2"
       player_hoimi()
-    when "にげる", "3"
-      player_escape()
     else
       player_attack()
     end
